@@ -26,12 +26,16 @@ public class PrincipalEstudar {
         System.out.println("Digite o nome da série para a busca: ");
         var nomeSerie = leitura.nextLine();
 
-        // Chamadar o metodo  obterDados() e atualizar o endereco com a busca
+        // Pegar a string que representa o json
         var json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
+        System.out.println("Consumo: ");
+        System.out.println(json);
+        System.out.println();
 
         // Chamadar o metodo  obterDados()
         var dados = conversor.obterDados(json, DadosSerie.class);
 
+        System.out.println("Conversor: ");
         System.out.println(dados);
 
         // Criar uma lista de DadosTemporada
