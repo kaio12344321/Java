@@ -22,8 +22,8 @@ public class ScreenmatchApplication extends ConsumoAPI implements CommandLineRun
 	@Override
 	public void run(String... args) throws Exception{
 		// Instância da classe principal para deixar o main mais limpo
-		Principal principal = new Principal(repositorio);
-		principal.exibeMenu();
+		Principal principalScreen = new Principal(repositorio);
+		principalScreen.exibeMenu();
 
 
 	}

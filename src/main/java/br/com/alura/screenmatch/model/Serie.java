@@ -28,6 +28,10 @@ public class Serie {
     private Double avaliacao;
 
     @Enumerated(EnumType.STRING)
+    // O gênero está vindo do json com várias categorias em uma única string
+    // Podemos criar um Enum que é uma lista fixa
+    // Já vamos mapear alguns possíveis gêneros e fazer com que o gênero recebido tem que ser algum dos gêneros mapeados
+
     private Categoria genero;
 
     private String atores;
@@ -67,7 +71,16 @@ public class Serie {
     public Serie(DadosSerie dadosSerie) {
         this.titulo = dadosSerie.titulo();
         this.totalTemporadas = dadosSerie.totalTemporadas();
+
+        // A avaliação vem do json como String, temos que converter para Double
+        // Optional é um objeto contêiner que pode ou não conter um valor não nulo
+        // Está forçando que o dado presento no Optional seja Double
+        // Se o dado for null, então ele vai ser 0.0
         this.avaliacao = OptionalDouble.of(Double.valueOf(dadosSerie.avaliacao())).orElse(0.0);
+
+        // Ao invés da gente instânciar uma Categoria, como nós temos um método static
+        // Então vamos chamar o método direto
+        // Vamos pegar a primeira posição antes da vírgula para ser o gênero definitivo
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.atores = dadosSerie.atores();
         this.poster = dadosSerie.poster();
@@ -130,6 +143,14 @@ public class Serie {
         this.sinopse = sinopse;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "genero = " + genero +
@@ -140,13 +161,5 @@ public class Serie {
                ", poster = '" + poster + '\'' +
                ", sinopse = '" + sinopse + '\'' +
                 ", episodios = '" + episodios + '\'';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

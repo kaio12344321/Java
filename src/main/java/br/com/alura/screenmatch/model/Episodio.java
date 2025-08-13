@@ -17,22 +17,6 @@ public class Episodio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Serie getSerie() {
-        return serie;
-    }
-
-    public void setSerie(Serie serie) {
-        this.serie = serie;
-    }
-
     //@Column(unique = true)
     private Integer temporada;
     private String titulo;
@@ -102,6 +86,22 @@ public class Episodio {
 
     public void setDataLancamento(LocalDate dataLancamento) {
         this.dataLancamento = dataLancamento;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
     }
 
     @Override
